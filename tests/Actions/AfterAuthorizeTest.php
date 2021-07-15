@@ -32,11 +32,11 @@ class AfterAuthorizeTest extends TestCase
         $jobClass = AfterAuthorizeJob::class;
         $this->app['config']->set('shopify-app.after_authenticate_job', [
             [
-                'job'    => $jobClass,
+                'job' => $jobClass,
                 'inline' => false,
             ],
             [
-                'job'    => $jobClass,
+                'job' => $jobClass,
                 'inline' => false,
             ],
         ]);
@@ -47,7 +47,7 @@ class AfterAuthorizeTest extends TestCase
         // Run
         call_user_func(
             $this->action,
-            $shop->getId(0)
+            $shop->getId()
         );
 
         Queue::assertPushed($jobClass);
@@ -58,7 +58,7 @@ class AfterAuthorizeTest extends TestCase
         // Create the config
         $jobClass = AfterAuthorizeJob::class;
         $this->app['config']->set('shopify-app.after_authenticate_job', [
-            'job'    => $jobClass,
+            'job' => $jobClass,
             'inline' => true,
         ]);
 
@@ -68,7 +68,7 @@ class AfterAuthorizeTest extends TestCase
         // Run
         $result = call_user_func(
             $this->action,
-            $shop->getId(0)
+            $shop->getId()
         );
 
         $this->assertTrue($result);
@@ -85,7 +85,7 @@ class AfterAuthorizeTest extends TestCase
         // Run
         $result = call_user_func(
             $this->action,
-            $shop->getId(0)
+            $shop->getId()
         );
 
         $this->assertFalse($result);

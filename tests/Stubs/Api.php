@@ -4,6 +4,7 @@ namespace Osiset\ShopifyApp\Test\Stubs;
 
 use ErrorException;
 use Exception;
+use Illuminate\Http\Response;
 use Osiset\BasicShopifyAPI\BasicShopifyAPI;
 use Osiset\BasicShopifyAPI\ResponseAccess;
 
@@ -34,10 +35,10 @@ class Api extends BasicShopifyAPI
         }
 
         return [
-            'errors'     => $errors,
-            'exception'  => $exception,
-            'body'       => new ResponseAccess($response),
-            'status'     => 200,
+            'errors' => $errors,
+            'exception' => $exception,
+            'body' => new ResponseAccess($response),
+            'status' => Response::HTTP_OK,
         ];
     }
 
@@ -58,11 +59,11 @@ class Api extends BasicShopifyAPI
         }
 
         return [
-            'errors'     => $errors,
-            'exception'  => $exception,
-            'response'   => $response,
-            'status'     => 200,
-            'body'       => new ResponseAccess($response),
+            'errors' => $errors,
+            'exception' => $exception,
+            'response' => $response,
+            'status' => Response::HTTP_OK,
+            'body' => new ResponseAccess($response),
         ];
     }
 

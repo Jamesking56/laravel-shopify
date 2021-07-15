@@ -9,10 +9,9 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Orchestra\Testbench\Http\Middleware\RedirectIfAuthenticated;
 use Osiset\ShopifyApp\Http\Middleware\AuthProxy;
-use Osiset\ShopifyApp\Http\Middleware\AuthShopify;
-use Osiset\ShopifyApp\Http\Middleware\AuthToken;
 use Osiset\ShopifyApp\Http\Middleware\AuthWebhook;
 use Osiset\ShopifyApp\Http\Middleware\Billable;
+use Osiset\ShopifyApp\Http\Middleware\VerifyShopify;
 
 class Kernel extends \Orchestra\Testbench\Http\Kernel
 {
@@ -24,18 +23,17 @@ class Kernel extends \Orchestra\Testbench\Http\Kernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'       => Authenticate::class,
+        'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
-        'bindings'   => SubstituteBindings::class,
-        'can'        => Authorize::class,
-        'guest'      => RedirectIfAuthenticated::class,
-        'throttle'   => ThrottleRequests::class,
+        'bindings' => SubstituteBindings::class,
+        'can' => Authorize::class,
+        'guest' => RedirectIfAuthenticated::class,
+        'throttle' => ThrottleRequests::class,
 
         // Added for testing
-        'auth.shopify' => AuthShopify::class,
-        'auth.token'   => AuthToken::class,
+        'verify.shopify' => VerifyShopify::class,
         'auth.webhook' => AuthWebhook::class,
-        'auth.proxy'   => AuthProxy::class,
-        'billable'     => Billable::class,
+        'auth.proxy' => AuthProxy::class,
+        'billable' => Billable::class,
     ];
 }
